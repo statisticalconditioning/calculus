@@ -1,0 +1,58 @@
+---
+title: "Introduction to Calculus"
+author: "William Murrah"
+date: "March 8, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(mosaic)
+```
+
+## Lines and Planes
+
+$$
+y = a + bx
+$$
+
+```{r}
+a = 1; b = .5;
+x = 1:10
+y = a + b*x
+plot(y ~ x, type = "l")
+ text(c(1, 5), expression(y == a + bx))
+```
+
+
+### Planes
+
+$$
+y = a + b1x_1 + b_2x_2
+$$
+
+```{r}
+library(rgl)
+x1 <- x2 <- seq(0, 10, length.out = 30)
+f <- function(x1,x2) { y <- 5 - 1*(x1 - mean(x1)) +  1*x2}
+y <- outer(x1, x2, f)
+persp3d(x1, x2, y, col = "red", alpha = .4)
+points3d(mean(x1), mean(x2), mean(y), col = "red")
+```
+
+
+
+## Polynomials
+
+$$
+y = a + b_1x_1 + b_2x_2
+$$
+
+```{r}
+plotFun(a + b1*x + b2*x^2 ~ x, xlim = c(0, 10), a = 5, b1 = -10, b2 = 1)
+```
+
+```{r}
+plotFun(a + b1*x - b2*x^2 + b3*x^3 ~ x, xlim = c(0, 10), a = 5, b1 = 1, b2 = 5, b3 = .5)
+```
+
